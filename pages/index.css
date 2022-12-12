@@ -13,5 +13,14 @@
 @import url(../blocks/elements/__element/elements__element.css);
 @import url(../blocks/elements/__image/elements__image.css);
 @import url(../blocks/elements/__caption/elements__caption.css);
-@import url(../blocks/elements/__text/elements__text.css);
 @import url(../blocks/elements/__icon/elements__icon.css);
+@import url(../blocks/popap/popap.css);
+@import url(../blocks/popap/_opened/popap_opened.css);
+@import url(../blocks/popap/__container/popap__container.css);
+@import url(../blocks/popap/__header/popap__header.css);
+@import url(../blocks/popap/__field/popap__field.css);
+@import url(../blocks/popap/__btn/popap__btn.css);
+@import url(../blocks/popap/__close/popap__close.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+

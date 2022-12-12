@@ -1,0 +1,11 @@
+/* .popap_opened {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width:100%;
+  min-height:100%;
+} */

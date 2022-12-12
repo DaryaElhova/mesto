@@ -1,0 +1,14 @@
+.popap__btn {
+  width: 100%;
+  margin: 48px 0 0 0;
+  background: #000000;
+  border-radius: 2px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  min-height: 50px;
+}
