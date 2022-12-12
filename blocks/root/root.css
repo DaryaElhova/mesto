@@ -1,0 +1,13 @@
+.root {
+  background: #000000;
+  width: 68.75%;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width:320px) {
+  .root {
+    max-width: 282px;
+    width: 88.1%;
+  }
+}
