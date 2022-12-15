@@ -1,5 +1,5 @@
-/* .popap_opened {
-  display: flex;
+.popup {
+  display: none;
   position: fixed;
   justify-content: center;
   align-items: center;
@@ -8,4 +8,6 @@
   background: rgba(0, 0, 0, 0.5);
   width:100%;
   min-height:100%;
-} */
+  margin: 0;
+  padding: 0;
+}

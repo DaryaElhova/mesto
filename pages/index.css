@@ -1,4 +1,5 @@
 @import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css);
 @import url(../blocks/root/root.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
@@ -14,13 +15,14 @@
 @import url(../blocks/elements/__image/elements__image.css);
 @import url(../blocks/elements/__caption/elements__caption.css);
 @import url(../blocks/elements/__icon/elements__icon.css);
-@import url(../blocks/popap/popap.css);
-@import url(../blocks/popap/_opened/popap_opened.css);
-@import url(../blocks/popap/__container/popap__container.css);
-@import url(../blocks/popap/__header/popap__header.css);
-@import url(../blocks/popap/__field/popap__field.css);
-@import url(../blocks/popap/__btn/popap__btn.css);
-@import url(../blocks/popap/__close/popap__close.css);
+@import url(../blocks/elements/__icon/__icon_active/elements__icon_active.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__header/popup__header.css);
+@import url(../blocks/popup/__field/popup__field.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__close/popup__close.css);
+@import url(../blocks/popup/__btn/popup__btn.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 

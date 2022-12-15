@@ -25,52 +25,51 @@
       <figure class="elements__element">
         <img class="elements__image" src="./images/bali.jpg" alt="Бали">
         <figcaption class="elements__caption">Bali, Indonesia</figcaption>
-        <img class="elements__icon" src="./images/icon.svg" alt="Нравится">
+        <button class="elements__icon elements__icon__active" type="button" aria-label="Нравится"></button>
       </figure>
       <figure class="elements__element">
         <img class="elements__image" src="./images/ciucas.jpg" alt="Бали">
         <figcaption class="elements__caption">Ciucas Peak</figcaption>
-        <img class="elements__icon" src="./images/icon.svg" alt="Нравится">
+        <button class="elements__icon" type="button" aria-label="Нравится"></button>
       </figure>
       <figure class="elements__element">
         <img class="elements__image" src="./images/latemar.jpg" alt="Бали">
         <figcaption class="elements__caption">Latemar, Dolomites</figcaption>
-        <img class="elements__icon" src="./images/icon.svg" alt="Нравится">
+        <button class="elements__icon" type="button" aria-label="Нравится"></button>
       </figure>
       <figure class="elements__element">
         <img class="elements__image" src="./images/louise.jpg" alt="Бали">
         <figcaption class="elements__caption">Lake Louise</figcaption>
-        <img class="elements__icon" src="./images/icon.svg" alt="Нравится">
+        <button class="elements__icon" type="button" aria-label="Нравится"></button>
       </figure>
       <figure class="elements__element">
         <img class="elements__image" src="./images/nandi.jpg" alt="Бали">
         <figcaption class="elements__caption">Nandi Hills</figcaption>
-        <img class="elements__icon" src="./images/icon.svg" alt="Нравится">
+        <button class="elements__icon" type="button" aria-label="Нравится"></button>
       </figure>
       <figure class="elements__element">
         <img class="elements__image" src="./images/yosemite.jpg" alt="Бали">
         <figcaption class="elements__caption">Yosemite National Park</figcaption>
-        <img class="elements__icon" src="./images/icon.svg" alt="Нравится">
+        <button class="elements__icon" type="button" aria-label="Нравится"></button>
       </figure>
     </section>
-    <section class="popap popap_opened">
-      <form class="popap__container">
-        <h2 class="popap__header">Редактировать профиль</h2>
+    <section class="popup">
+      <form class="popup__container">
+        <h2 class="popup__header">Редактировать профиль</h2>
         <label>
-          <input class="popap__field" type="text" id="name" placeholder="Жак-Ив Кусто">
+          <input class="popup__field popup__field_name" type="text" id="name" value="Жак-Ив Кусто" placeholder="ФИО">
         </label>
         <label>
-          <input class="popap__field" type="text" id="info" placeholder="Исследователь океана">
-        </labelclass=>
+          <input class="popup__field popup__field_job" type="text" id="info" value="Исследователь океана" placeholder="Чем занимаетесь?">
+        </label>
+        <button class="popup__btn" type="submit">Сохранить</button>
+        <button class="popup__close"></button>
       </form>
-      <button class="popap__btn">Сохранить</button>
-      <svg class="popap__close" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M32 28.8L19.2 16L32 3.2L28.8 0L16 12.8L3.2 0L0 3.2L12.8 16L0 28.8L3.2 32L16 19.2L28.8 32L32 28.8Z" fill="white"/>
-      </svg>
     </section>
   </main>
 <footer class="footer">
-  <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+  <a class="footer__copyright" href="#">&copy; 2020 Mesto Russia</a>
 </footer>
+<script src="script.js"></script>
 </body>
 </html>
