@@ -6,9 +6,17 @@
   background-repeat: no-repeat;
   background-position: center;
   align-self: center;
-  margin-left: 18px;
+  margin-left: 5.3%;
   cursor: pointer;
 
+}
+
+@media screen and (max-width:768px) {
+  .profile__button {
+    width: 20px;
+    height: 20px;
+    margin-left: 2%;
+  }
 }
 
 @media screen and (max-width:320px) {

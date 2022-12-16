@@ -5,9 +5,9 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width:320px) {
+@media screen and (max-width:425px) {
   .root {
-    max-width: 282px;
+    /* max-width: 282px; */
     width: 88.1%;
   }
 }

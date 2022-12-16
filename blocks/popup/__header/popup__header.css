@@ -1,4 +1,4 @@
-.popap__header {
+.popup__header {
   font-family: 'Inter', Helvetica, sans-serif;;
   font-style: normal;
   font-weight: 900;
@@ -6,6 +6,6 @@
   line-height: 29px;
   margin: 0 0 24px 0;
   color: #000000;
-  padding:0 ;
+  padding: 0;
 
 }
