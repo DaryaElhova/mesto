@@ -1,16 +1,6 @@
 .elements__caption {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  font-family: 'Inter', Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1.2;
-  color: #000000;
-  margin-top: 25px;
-  margin-left: 7.44%;
-  margin-bottom: 21px;
-  padding: 0;
-  max-width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 15px 31px 21px;
 }

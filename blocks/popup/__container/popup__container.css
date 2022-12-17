@@ -13,3 +13,9 @@
   margin-top: 195px;
 }
 
+@media screen and (max-width: 320px) {
+  .popup__container{
+    width: 88.125%;
+    margin-top: 123px;
+  }
+}
