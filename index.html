@@ -26,7 +26,7 @@
         <img class="elements__image" src="./images/bali.jpg" alt="Бали">
         <figcaption class="elements__caption">
           <h2 class="elements__title">Bali, Indonesia</h2>
-          <button class="elements__icon elements__icon_active" type="button" aria-label="Нравится"></button>
+          <button class="elements__icon" type="button" aria-label="Нравится"></button>
         </figcaption>
       </figure>
       <figure class="elements__element">
@@ -65,23 +65,21 @@
         </figcaption>
       </figure>
     </section>
-    <section class="popup">
-      <form class="popup__container">
-        <h2 class="popup__header">Редактировать профиль</h2>
-        <label>
-          <input class="popup__field popup__field_name" type="text" id="name" value="Жак-Ив Кусто" placeholder="ФИО">
-        </label>
-        <label>
-          <input class="popup__field popup__field_job" type="text" id="info" value="Исследователь океана" placeholder="Чем занимаетесь?">
-        </label>
-        <button class="popup__btn" type="submit">Сохранить</button>
-        <button class="popup__close"></button>
-      </form>
-    </section>
   </main>
 <footer class="footer">
-  <a class="footer__copyright" href="#">&copy; 2020 Mesto Russia</a>
+  <p class="footer__copyright" href="#">&copy; 2020 Mesto Russia</p>
 </footer>
-<script src="/scripts/index.js"></script>
+<div class="popup">
+      <div class="popup__container">
+        <form name="form">
+          <h2 class="popup__header">Редактировать профиль</h2>
+          <input class="popup__field popup__field_type_name" type="text" id="name" value="" placeholder="ФИО">
+          <input class="popup__field popup__field_type_job" type="text" id="job" value="" placeholder="Чем занимаетесь?">
+          <button class="popup__btn" type="submit">Сохранить</button>
+          <button class="popup__close" type="button"></button>
+        </form>
+      </div>
+    </div>
+<script src="./scripts/index.js"></script>
 </body>
 </html>

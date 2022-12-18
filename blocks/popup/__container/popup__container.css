@@ -1,7 +1,6 @@
 .popup__container {
   width:33.6%;
   max-width: 430px;
-  min-height: 330px;
   display: flex;
   flex-direction: column;
   background: #FFFFFF;
@@ -10,12 +9,32 @@
   padding: 34px 36px 37px 36px;
   position: relative;
   box-sizing: border-box;
-  margin-top: 195px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 1130px) {
+  .popup__container{
+    padding: 31px 33px 34px 33px;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .popup__container{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .popup__container{
+    width: 80%;
+  }
+}
+
+
+
+@media screen and (max-width: 425px) {
   .popup__container{
     width: 88.125%;
-    margin-top: 123px;
+    padding: 25px 22px;
   }
 }

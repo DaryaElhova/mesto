@@ -10,9 +10,20 @@
   -moz-text-size-adjust: 100%; 
 }
 
+@media screen and (max-width:768px) {
+  .root {
+    width: 78%;
+  }
+}
+
 @media screen and (max-width:425px) {
   .root {
-    /* max-width: 282px; */
     width: 88.1%;
+  }
+}
+
+@media screen and (max-width:320px) {
+  .root {
+    width: 100%;
   }
 }

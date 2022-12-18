@@ -12,9 +12,20 @@
   color: #FFFFFF;
   min-height: 50px;
   cursor: pointer;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 .popup__btn:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   transition: opacity 1s ease;
+}
+
+@media screen and (max-width: 320px) {
+  .popup__btn{
+    font-size: 14px;
+    line-height: 17px;
+    min-height: 46px;
+    margin: 45px 0 0 0;
+  }
 }
