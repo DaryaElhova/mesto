@@ -7,7 +7,12 @@
   align-content: flex-start;
 }
 
-
+@media screen and (max-width: 900px) {
+  .profile__info{
+    max-width: 50%;
+    margin-left: 10px;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .profile__info {
