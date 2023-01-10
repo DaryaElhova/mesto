@@ -38,3 +38,52 @@ function handleFormSubmit(evt) {
 
 formElement.addEventListener('submit', handleFormSubmit);
 
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
+
+const cardsContainer = document.querySelector('.elements');
+const elementsTemplate = document.querySelector('.elements-template').content.querySelector('.elements__element');
+
+function createCards({name, link}){
+  const card = elementsTemplate.cloneNode(true);
+  const cardTitle = card.querySelector('.elements__title');
+  const cardImage = card.querySelector('.elements__image');
+
+  cardTitle.textContent = name;
+  cardImage.src = link;
+
+  return card;
+}
+
+function renderCards(){
+  initialCards.forEach(item => {
+    const cardItem = createCards(item);
+    cardsContainer.append(cardItem);
+  })
+}
+
+renderCards();

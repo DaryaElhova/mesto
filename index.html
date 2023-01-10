@@ -21,65 +21,33 @@
       </div>
       <button class="profile__button-add" type="button" aria-label="Добавить"></button>
     </section>
-    <section class="elements">
-      <figure class="elements__element">
-        <img class="elements__image" src="./images/bali.jpg" alt="Бали">
-        <figcaption class="elements__caption">
-          <h2 class="elements__title">Bali, Indonesia</h2>
-          <button class="elements__icon" type="button" aria-label="Нравится"></button>
-        </figcaption>
-      </figure>
-      <figure class="elements__element">
-        <img class="elements__image" src="./images/ciucas.jpg" alt="Бали">
-        <figcaption class="elements__caption">
-          <h2 class="elements__title">Ciucas Peak</h2>
-          <button class="elements__icon" type="button" aria-label="Нравится"></button>
-        </figcaption>
-      </figure>
-      <figure class="elements__element">
-        <img class="elements__image" src="./images/latemar.jpg" alt="Бали">
-        <figcaption class="elements__caption">
-          <h2 class="elements__title">Latemar, Dolomites</h2>
-          <button class="elements__icon" type="button" aria-label="Нравится"></button>
-        </figcaption>
-      </figure>
-      <figure class="elements__element">
-        <img class="elements__image" src="./images/louise.jpg" alt="Бали">
-        <figcaption class="elements__caption">
-          <h2 class="elements__title">Lake Louise</h2>
-          <button class="elements__icon" type="button" aria-label="Нравится"></button>
-        </figcaption>
-      </figure>
-      <figure class="elements__element">
-        <img class="elements__image" src="./images/nandi.jpg" alt="Бали">
-        <figcaption class="elements__caption">
-          <h2 class="elements__title">Nandi Hills</h2>
-          <button class="elements__icon" type="button" aria-label="Нравится"></button>
-        </figcaption>
-      </figure>
-      <figure class="elements__element">
-        <img class="elements__image" src="./images/yosemite.jpg" alt="Бали">
-        <figcaption class="elements__caption">
-          <h2 class="elements__title">Yosemite National Park</h2>
-          <button class="elements__icon" type="button" aria-label="Нравится"></button>
-        </figcaption>
-      </figure>
-    </section>
+    <ul class="elements">
+      
+    </ul>
   </main>
 <footer class="footer">
   <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
 </footer>
 <div class="popup">
-      <div class="popup__container">
-        <form name="form" class="popup__form">
-          <h2 class="popup__header">Редактировать профиль</h2>
-          <input class="popup__field popup__field_type_name" type="text" id="name" value="" placeholder="ФИО">
-          <input class="popup__field popup__field_type_job" type="text" id="job" value="" placeholder="Чем занимаетесь?">
-          <button class="popup__btn" type="submit">Сохранить</button>
-          <button class="popup__close" type="button"></button>
-        </form>
-      </div>
+  <div class="popup__container">
+    <form name="form" class="popup__form">
+      <h2 class="popup__header">Редактировать профиль</h2>
+      <input class="popup__field popup__field_type_name" type="text" id="name" value="" placeholder="ФИО">
+      <input class="popup__field popup__field_type_job" type="text" id="job" value="" placeholder="Чем занимаетесь?">
+      <button class="popup__btn" type="submit">Сохранить</button>
+      <button class="popup__close" type="button"></button>
+    </form>
+  </div>
+</div>
+<template class="elements-template">
+  <li class="elements__element">
+    <img class="elements__image" src="#" alt="#">
+    <div class="elements__caption">
+      <h2 class="elements__title"></h2>
+      <button class="elements__icon" type="button" aria-label="Нравится"></button>
     </div>
+  </li>
+</template>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
