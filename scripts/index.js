@@ -1,32 +1,42 @@
 const openPopupButton = document.querySelector('.profile__button');
-const profilePopup = document.querySelector ('.popup');
-const closePopupButton = profilePopup.querySelector('.popup__close');
+const profilePopup = document.querySelector ('.popup_edit_profile');
+const closeProfilePopup = profilePopup.querySelector('.popup__close');
+
 const formElement = document.querySelector ('.popup__form');
 const nameInput = document.querySelector('.popup__field_type_name');
 const jobInput = document.querySelector('.popup__field_type_job');
 const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
+const addCardButton = document.querySelector('.profile__button-add');
+const newCardPopup = document.querySelector('.popup_add_card');
+const closeAddCardPopup = newCardPopup.querySelector('.popup__close');
 
-function openPopup() {
-  profilePopup.classList.add('popup_opened');
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
+function openPopup(popup){
+  popup.classList.add('popup_opened');
 }
 
-openPopupButton.addEventListener('click', openPopup);
+openPopupButton.addEventListener('click', openProfilePopup);
+addCardButton.addEventListener('click', openAddCardPopup);
 
-function closePopup() {
-  profilePopup.classList.remove('popup_opened');
+function openProfilePopup(e){
+  e.preventDefault();
+  openPopup(profilePopup);
 }
 
-closePopupButton.addEventListener('click', closePopup);
+function openAddCardPopup(e){
+  e.preventDefault();
+  openPopup(newCardPopup);
+}
 
+function closePopup(popup){
+  popup.classList.remove('popup_opened');
+}
 
-// profilePopup.addEventListener('click', (event) => {
-//   if(event.target === event.currentTarget) {
-//     profilePopup.classList.remove('popup_opened');
-// };
-// })
+closeProfilePopup.addEventListener('click', () =>
+closePopup(profilePopup));
+
+closeAddCardPopup.addEventListener('click', () => 
+closePopup(newCardPopup));
 
 
 function handleFormSubmit(evt) {
@@ -87,3 +97,10 @@ function renderCards(){
 }
 
 renderCards();
+
+// profilePopup.addEventListener('click', (event) => {
+//   if(event.target === event.currentTarget) {
+//     profilePopup.classList.remove('popup_opened');
+// };
+// })
+

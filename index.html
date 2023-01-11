@@ -21,24 +21,34 @@
       </div>
       <button class="profile__button-add" type="button" aria-label="Добавить"></button>
     </section>
-    <ul class="elements">
-      
-    </ul>
+    <ul class="elements"></ul>
   </main>
 <footer class="footer">
   <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
 </footer>
-<div class="popup">
+<div class="popup popup_edit_profile">
   <div class="popup__container">
     <form name="form" class="popup__form">
       <h2 class="popup__header">Редактировать профиль</h2>
       <input class="popup__field popup__field_type_name" type="text" id="name" value="" placeholder="ФИО">
       <input class="popup__field popup__field_type_job" type="text" id="job" value="" placeholder="Чем занимаетесь?">
       <button class="popup__btn" type="submit">Сохранить</button>
-      <button class="popup__close" type="button"></button>
+      <button class="popup__close popup_close_edit-profile-form" type="button"></button>
     </form>
   </div>
 </div>
+<div class="popup popup_add_card">
+  <div class="popup__container">
+    <form name="form" class="popup__form">
+      <h2 class="popup__header">Новое место</h2>
+      <input class="popup__field popup__field_type_name" type="text" id="name" value="" placeholder="Название">
+      <input class="popup__field popup__field_type_job" type="text" id="job" value="" placeholder="Ссылка на картинку">
+      <button class="popup__btn" type="submit">Создать</button>
+      <button class="popup__close popup_close_add-card-form" type="button"></button>
+    </form>
+  </div>
+</div>
+
 <template class="elements-template">
   <li class="elements__element">
     <img class="elements__image" src="#" alt="#">
