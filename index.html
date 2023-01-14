@@ -42,7 +42,7 @@
     <form name="form" class="popup__form">
       <h2 class="popup__header">Новое место</h2>
       <input class="popup__field popup__field_type_name" type="text" id="name" value="" placeholder="Название">
-      <input class="popup__field popup__field_type_job" type="text" id="job" value="" placeholder="Ссылка на картинку">
+      <input class="popup__field popup__field_type_link" type="url" id="image" value="" placeholder="Ссылка на картинку">
       <button class="popup__btn" type="submit">Создать</button>
       <button class="popup__close popup_close_add-card-form" type="button"></button>
     </form>
@@ -51,6 +51,7 @@
 
 <template class="elements-template">
   <li class="elements__element">
+    <button class="elements__btn-delete" type="button" aria-label="Удалить"></button>
     <img class="elements__image" src="#" alt="#">
     <div class="elements__caption">
       <h2 class="elements__title"></h2>
