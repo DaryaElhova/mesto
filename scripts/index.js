@@ -12,7 +12,7 @@ const closeAddCardPopup = newCardPopup.querySelector('.popup__close');
 const newCardForm = newCardPopup.querySelector('.popup__form');
 const cardsContainer = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('.elements-template').content.querySelector('.elements__element');
-const popupImage = document.querySelector('.popup__image');
+const popupImage = document.querySelector('.popup_image');
 const closePopupImage = popupImage.querySelector('.popup__close');
 
 
