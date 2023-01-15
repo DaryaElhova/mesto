@@ -10,9 +10,12 @@ const addCardButton = document.querySelector('.profile__button-add');
 const newCardPopup = document.querySelector('.popup_add_card');
 const closeAddCardPopup = newCardPopup.querySelector('.popup__close');
 const newCardForm = newCardPopup.querySelector('.popup__form');
-
 const cardsContainer = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('.elements-template').content.querySelector('.elements__element');
+const popupImage = document.querySelector('.popup__image');
+const closePopupImage = popupImage.querySelector('.popup__close');
+
+
 
 
 //функция создания новой карточки
@@ -37,13 +40,27 @@ function getCard({name,link}){
   deleteBtn.addEventListener('click', (evt) => {
     evt.target.closest('.elements__element').remove();
   })
+
+  //отктытие и закрытие попапа с большим изображением по клику
+  const popupBigImage = popupImage.querySelector('.popup__big-image');
+  const popupImageTitle = popupImage.querySelector('.popup__title');
   
+  cardImage.addEventListener('click', () => {
+    popupBigImage.src = link;
+    popupImageTitle.textContent = name;
+    popupBigImage.alt = name;
+    openPopup(popupImage);
+  })
+
+  closePopupImage.addEventListener('click', () => {
+    closePopup(popupImage);
+  })
+
   return newCard;
 }
 
 //листенер на сабмит формы
 newCardForm.addEventListener('submit', addCard);
-
 
 
 function addCard(e){
@@ -56,7 +73,7 @@ function addCard(e){
   newCardForm.reset();//очистка формы
 }
 
-
+//шаблон функции открытия попапа
 function openPopup(popup){
   popup.classList.add('popup_opened');
 }
@@ -74,6 +91,7 @@ function openAddCardPopup(e){
   openPopup(newCardPopup);
 }
 
+//шаблон функции закрытия попапа
 function closePopup(popup){
   popup.classList.remove('popup_opened');
 }
@@ -138,3 +156,9 @@ renderCards();
 // };
 // })
 
+//закрытие попапа по оверлею
+popupImage.addEventListener('click', (event) => {
+  if(event.target === event.currentTarget) {
+    popupImage.classList.remove('popup_opened');
+};
+})
