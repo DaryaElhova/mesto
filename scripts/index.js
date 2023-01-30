@@ -123,17 +123,18 @@ function renderCards() {
 
 renderCards();
 
-//закрытие попапа по оверлею
-profilePopup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {
-    closePopup(profilePopup);
-  }
-});
 
-popupImage.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {
-    closePopup(popupImage);
-  }
-});
+//закрытие попапа по оверлею
+function closePopupOverlay (popup) {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup);
+    }
+  });
+};
+
+closePopupOverlay(profilePopup);
+closePopupOverlay(popupImage);
+closePopupOverlay(newCardPopup);
 
 
