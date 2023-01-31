@@ -98,7 +98,7 @@ function openAddCardPopup(e) {
 //шаблон функции закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListenet('keyup', handleEscKeyup);
+  popup.removeEventListener('keyup', handleEscKeyup);
 }
 
 closeProfilePopup.addEventListener('click', () => closePopup(profilePopup));
@@ -141,8 +141,8 @@ closePopupOverlay(newCardPopup);
 //закрытите попапа клавишой Esc
 const handleEscKeyup = (evt) => {
   evt.preventDefault();
-  const activPopup = document.querySelector('.popup_opened');
-  if (evt.key = 'Escape') {
+  if (evt.key === 'Escape') {
+    const activPopup = document.querySelector('.popup_opened');
     closePopup(activPopup);
   }
 }; 
