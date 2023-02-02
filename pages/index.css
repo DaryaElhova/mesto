@@ -34,3 +34,5 @@
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__field/_type_error/popup__field_type_error.css);
 @import url(../blocks/popup/__btn/_type_inactiv/popup__btn_type_inactiv.css);
+@import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__form/popup__form.css);

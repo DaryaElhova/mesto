@@ -1,7 +1,3 @@
-const form = document.querySelector('.form');
-const formInput = form.querySelector('.popup__field');
-const formError = form.querySelector(`${formInput.id}-error`);
-
 const config = {
   formSelector: '.form',
   inputSelector: '.popup__field',
@@ -24,6 +20,7 @@ const showInputError = (form, inputElement, errorMessage, config) => {
 };
 
 const hideInputError = (form, inputElement) => {
+
   const errorElement = form.querySelector(`.${inputElement.id}-error`);
   errorElement.classList.remove(config.errorClass);
   inputElement.classList.remove(config.inputErrorClass);
@@ -76,12 +73,26 @@ const setEventListeners = (form, config) => {
   });
 };
 
+//функция деактивации кнопки
+const disabledButton = (form, config) => {
+  const buttonElement = form.querySelector(config.submitButtonSelector);
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', '');
+}
+
 //найти все формы в DOM и вызвать для них функцию setEventListeners
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((form) => {
+    form.addEventListener('submit', (evt) => {
+      //после сабмита при новом открытии попапа унопка будет нективна
+      disabledButton(form, config);
+    });
     setEventListeners(form, config);
   });
 };
 
 enableValidation(config);
+
+
+

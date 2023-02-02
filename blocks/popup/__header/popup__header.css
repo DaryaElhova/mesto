@@ -4,7 +4,7 @@
   font-weight: 900;
   font-size: 24px;
   line-height: 1.2;
-  margin: 0 0 24px 0;
+  margin: 0 0 54px 0;
   color: #000000;
   padding: 0;
 }
@@ -12,7 +12,7 @@
 @media screen and (max-width: 1130px){
   .popup__header{
     font-size: 20px;
-    margin: 0 0 20px 0;
+    margin: 0 0 50px 0;
   }
 }
 
@@ -20,7 +20,6 @@
   .popup__header{
     font-size: 18px;
     line-height: 22px;
-    margin: 0 0 45px 0;
+    margin: 0 0 50px 0;
   }
-  
 }
