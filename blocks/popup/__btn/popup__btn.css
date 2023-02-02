@@ -1,6 +1,6 @@
 .popup__btn {
   width: 100%;
-  margin: 48px 0 0 0;
+  margin: 18px 0 0 0;
   background: #000000;
   border-radius: 2px;
   font-family: 'Inter', Helvetica, sans-serif;
@@ -26,6 +26,6 @@
     font-size: 14px;
     line-height: 17px;
     min-height: 46px;
-    margin: 45px 0 0 0;
+    margin: 15px 0 0 0;
   }
 }
