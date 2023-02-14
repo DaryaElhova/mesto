@@ -28,44 +28,44 @@ const cardsContainer = document.querySelector('.elements');
 const closePopupImage = popupImage.querySelector('.popup__close');
 
 //функци.созд. карточки через новый экземпляр класса.
-function createCard(image, title) {
-  const card = new Card('.elements__element', image, title);
+function createCard(title, image) {
+  const card = new Card(title, image, '.elements__template');
   const cardElement = card.generateCard();
   return cardElement;
 }
 
 //добавл.карточку в разметку
-const addCards = (image, title) => {
-  const card = createCard(image, title);
+const addCards = (title, image) => {
+  const card = createCard(title, image);
   cardsContainer.prepend(card);
 }
 
 //на каждом элементе массива вызываем функци добавл карточки
 //(она в свою очередь вызывает create)
-const renderCard = (initialCards) => {
+const renderCards = (initialCards) => {
   initialCards.forEach((item) => {
     addCards(item.name, item.link);
   })
 }
 
-renderCard(initialCards);
+renderCards(initialCards);
 
 
-//слушатель на закрытие попапа устанавливается в глобальной обл видимости
-closePopupImage.addEventListener('click', () => {
-  closePopup(popupImage);
-});
+// //слушатель на закрытие попапа устанавливается в глобальной обл видимости
+// closePopupImage.addEventListener('click', () => {
+//   closePopup(popupImage);
+// });
 
-//листенер на сабмит формы
-newCardForm.addEventListener('submit', addCard);
+// //листенер на сабмит формы
+// newCardForm.addEventListener('submit', addCard);
 
-function addCard(e) {
-  e.preventDefault();
-  const newCard = getCard({ name: newCardName.value, link: newCardLink.value });
-  cardsContainer.prepend(newCard);
-  closePopup(newCardPopup);
-  newCardForm.reset(); //очистка формы
-}
+// function addCard(e) {
+//   e.preventDefault();
+//   const newCard = getCard({ name: newCardName.value, link: newCardLink.value });
+//   cardsContainer.prepend(newCard);
+//   closePopup(newCardPopup);
+//   newCardForm.reset(); //очистка формы
+// }
 
 //шаблон функции открытия попапа
 function openPopup(popup) {
@@ -108,16 +108,6 @@ function submitEditProfileForm(evt) {
 }
 
 formElement.addEventListener('submit', submitEditProfileForm);
-
-//добавляем в DOM карточки с данными из массива
-function renderCards() {
-  initialCards.forEach((item) => {
-    const cardItem = getCard(item);
-    cardsContainer.append(cardItem);
-  });
-}
-
-renderCards();
 
 
 //закрытие попапа по оверлею

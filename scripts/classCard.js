@@ -1,7 +1,7 @@
 import { popupImage, popupBigImage, popupImageTitle } from "./index.js";
 
 class Card {
-  constructor(template, image, title){
+  constructor(title, image, template){
     this._template = template;
     this._image = image;
     this._title = title;
@@ -13,7 +13,8 @@ class Card {
     const cardElement =  document
       .querySelector('.elements-template')
       .content
-      .querySelector('.elements__element');
+      .querySelector('.elements__element')
+      .cloneNode(true);
 
       return cardElement;
   }
@@ -26,7 +27,7 @@ class Card {
     this._element.querySelector('.elements__icon').addEventListener('click', () => {
       this._likeCard();
     });
-    this._element.addEventListener('click', () => {
+    this._element.querySelector('.elements__image').addEventListener('click', () => {
       this._handleOpenPopup();
     });
     popupImage.querySelector('.popup__close').addEventListener('click', () => {
