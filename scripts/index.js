@@ -67,21 +67,28 @@ const renderCards = (initialCards) => {
 renderCards(initialCards);
 
 //листенер на сабмит формы
-newCardForm.addEventListener('submit', () => {
-  newAddCard();
+// newCardForm.addEventListener('submit', () => {
+//   newAddCard();
 
-  //убираем баг,когда после добавления карточки 
-  //форма открывается и кнопка активна при пустых полях
-  newCardPopupValidator.resetValidation();
-});
+//   //убираем баг,когда после добавления карточки 
+//   //форма открывается и кнопка активна при пустых полях
+//   newCardPopupValidator.resetValidation();
+// });
 
-//функция добавления новой карточки через попап
-function newAddCard(e) {
+newCardForm.addEventListener('submit', (e) => {
   e.preventDefault();
   addCard(newCardName.value, newCardLink.value);
   closePopup(newCardPopup);
-  newCardForm.reset(); //очистка формы
-}
+  newCardForm.reset();
+})
+
+//функция добавления новой карточки через попап
+// function newAddCard(e) {
+//   e.preventDefault();
+//   addCard(newCardName.value, newCardLink.value);
+//   closePopup(newCardPopup);
+//   newCardForm.reset(); //очистка формы
+// }
 
 //шаблон функции открытия попапа
 function openPopup(popup) {
@@ -102,7 +109,7 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
 addCardButton.addEventListener('click', openAddCardPopup);
 
 function openProfilePopup(e) {
-  //e.preventDefault();
+ // e.preventDefault();
   openPopup(profilePopup);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
