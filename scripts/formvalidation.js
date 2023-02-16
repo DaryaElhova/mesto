@@ -8,7 +8,8 @@ const config = {
 }
 
 //хэлперы. добавляет и убирает класс с ошибкой
-//Чтобы знать, где искать элемент ошибкой, мы передаём функции параметр formElement и ищем элемент ошибки в нём.
+//Чтобы знать, где искать элемент ошибкой, мы передаём 
+//функции параметр formElement и ищем элемент ошибки в нём.
 
 const showInputError = (form, inputElement, errorMessage, config) => {
   //находим ошибку по id инпута внутри функции
@@ -63,7 +64,8 @@ const setEventListeners = (form, config) => {
   const buttonElement = form.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement,config);
 
-  //проходимся по каждому элементу массива, на каждый инпут формы вешаем обработчик на сабмит с ф-й проверки валидности
+  //проходимся по каждому элементу массива, на каждый инпут формы вешаем 
+  //обработчик на сабмит с ф-й проверки валидности
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(form, inputElement, config);

@@ -1,5 +1,6 @@
 import initialCards from './initialcards.js'
-import Card from './classCard.js'
+import Card from './Card.js'
+import FormValidator from './FormValidator.js';
 
 export const popupImage = document.querySelector('.popup_image');
 export const popupBigImage = popupImage.querySelector('.popup__big-image');
@@ -25,7 +26,22 @@ const newCardLink = newCardPopup.querySelector('.popup__field_type_link');
 
 const cardsContainer = document.querySelector('.elements');
 
-const closePopupImage = popupImage.querySelector('.popup__close');
+const config = {
+  formSelector: '.form',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__btn',
+  inactiveButtonClass: 'popup__btn_type_inactiv',
+  inputErrorClass: 'popup__field_type_error',
+  errorClass: 'popup__input-error'
+}
+
+//валидация формы добавления карточки
+const newCardPopupValidator = new FormValidator(config, newCardForm);
+newCardPopupValidator.enableValidation();
+
+//валидация формы редактирования профиля
+const profilePopupValidator  = new FormValidator(config, formElement);
+profilePopupValidator.enableValidation();
 
 //функци.созд. карточки через новый экземпляр класса.
 function createCard(title, image) {
@@ -35,7 +51,7 @@ function createCard(title, image) {
 }
 
 //добавл.карточку в разметку
-const addCards = (title, image) => {
+const addCard = (title, image) => {
   const card = createCard(title, image);
   cardsContainer.prepend(card);
 }
@@ -44,45 +60,53 @@ const addCards = (title, image) => {
 //(она в свою очередь вызывает create)
 const renderCards = (initialCards) => {
   initialCards.forEach((item) => {
-    addCards(item.name, item.link);
+    addCard(item.name, item.link);
   })
 }
 
 renderCards(initialCards);
 
+//листенер на сабмит формы
+newCardForm.addEventListener('submit', () => {
+  newAddCard();
 
-// //слушатель на закрытие попапа устанавливается в глобальной обл видимости
-// closePopupImage.addEventListener('click', () => {
-//   closePopup(popupImage);
-// });
+  //убираем баг,когда после добавления карточки 
+  //форма открывается и кнопка активна при пустых полях
+  newCardPopupValidator.resetValidation();
+});
 
-// //листенер на сабмит формы
-// newCardForm.addEventListener('submit', addCard);
-
-// function addCard(e) {
-//   e.preventDefault();
-//   const newCard = getCard({ name: newCardName.value, link: newCardLink.value });
-//   cardsContainer.prepend(newCard);
-//   closePopup(newCardPopup);
-//   newCardForm.reset(); //очистка формы
-// }
+//функция добавления новой карточки через попап
+function newAddCard(e) {
+  e.preventDefault();
+  addCard(newCardName.value, newCardLink.value);
+  closePopup(newCardPopup);
+  newCardForm.reset(); //очистка формы
+}
 
 //шаблон функции открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
-  //слушательна  закрытие попапа по ESC устанавливается в ф-ю откр попапа, т.к должен срабатывать когда он открыт
+  //слушательна  закрытие попапа по ESC устанавливается 
+  //в ф-ю откр попапа, т.к должен срабатывать когда он открыт
   document.addEventListener('keyup', handleEscKeyup);
 }
 
-buttonOpenEditProfilePopup.addEventListener('click', openProfilePopup);
+buttonOpenEditProfilePopup.addEventListener('click', () => {
+  openProfilePopup();
+
+  //когда открыт попап ред.профиля с валидными данными,кнопка сразу активна
+  profilePopupValidator.activeSubmitButtonEditProfilePopup();
+});
+
 addCardButton.addEventListener('click', openAddCardPopup);
 
 function openProfilePopup(e) {
-  e.preventDefault();
+  //e.preventDefault();
   openPopup(profilePopup);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
+
 }
 
 function openAddCardPopup(e) {
@@ -94,6 +118,7 @@ function openAddCardPopup(e) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   popup.removeEventListener('keyup', handleEscKeyup);
+
 }
 
 closeProfilePopup.addEventListener('click', () => closePopup(profilePopup));
@@ -131,6 +156,7 @@ const handleEscKeyup = (evt) => {
     closePopup(activPopup);
   }
 }; 
+
 
 
 
