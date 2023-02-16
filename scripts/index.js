@@ -124,7 +124,7 @@ function openAddCardPopup(e) {
 //шаблон функции закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('keyup', handleEscKeyup);
+  document.removeEventListener('keyup', handleEscKeyup);
 
 }
 
