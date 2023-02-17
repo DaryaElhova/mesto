@@ -163,7 +163,3 @@ const handleEscKeyup = (evt) => {
     closePopup(activPopup);
   }
 }; 
-
-
-
-
