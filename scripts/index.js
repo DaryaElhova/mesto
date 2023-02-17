@@ -88,7 +88,7 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
   openProfilePopup();
 
   //когда открыт попап ред.профиля с валидными данными,кнопка сразу активна
-  profilePopupValidator.activeButton();
+  profilePopupValidator.resetValidation();
 });
 
 addCardButton.addEventListener('click', () => {

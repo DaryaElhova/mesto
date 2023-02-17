@@ -53,7 +53,8 @@ _toggleButtonState(){
   if(this._hasInvalidInput(this._inputList)) {
     this.disabledButton();
   } else {
-    this.activeButton();
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled', true)
   }
 };
 
@@ -74,19 +75,17 @@ disabledButton() {
   this._buttonElement.setAttribute('disabled', true)
 }
 
-//делает кнопку активной при открытии попапа с валидными данными
-activeButton(){
-  this._buttonElement.classList.remove(this._inactiveButtonClass);
-  this._buttonElement.removeAttribute('disabled', true)
-}
 
-//метод не дает добавить пустую карточку
+//метод не дает добавить пустую карточку и сбрасывает ошиибки валидации
 resetValidation() {
+  this._toggleButtonState();
+
   this._inputList.forEach((inputElement) => {
     this._hideInputError(inputElement);
   });
-  this._toggleButtonState();
+  
 }
+
 
 enableValidation(){
   this._setEventListeners()
