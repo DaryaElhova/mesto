@@ -106,7 +106,10 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
   profilePopupValidator.activeSubmitButtonEditProfilePopup();
 });
 
-addCardButton.addEventListener('click', openAddCardPopup);
+addCardButton.addEventListener('click', () => {
+  openAddCardPopup();
+  newCardPopupValidator.resetValidation();
+});
 
 function openProfilePopup(e) {
  // e.preventDefault();
@@ -117,7 +120,7 @@ function openProfilePopup(e) {
 }
 
 function openAddCardPopup(e) {
-  e.preventDefault();
+  //e.preventDefault();
   openPopup(newCardPopup);
 }
 
