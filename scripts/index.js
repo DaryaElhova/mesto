@@ -66,14 +66,6 @@ const renderCards = (initialCards) => {
 
 renderCards(initialCards);
 
-//листенер на сабмит формы
-// newCardForm.addEventListener('submit', () => {
-//   newAddCard();
-
-//   //убираем баг,когда после добавления карточки 
-//   //форма открывается и кнопка активна при пустых полях
-//   newCardPopupValidator.resetValidation();
-// });
 
 newCardForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -82,13 +74,6 @@ newCardForm.addEventListener('submit', (e) => {
   newCardForm.reset();
 })
 
-//функция добавления новой карточки через попап
-// function newAddCard(e) {
-//   e.preventDefault();
-//   addCard(newCardName.value, newCardLink.value);
-//   closePopup(newCardPopup);
-//   newCardForm.reset(); //очистка формы
-// }
 
 //шаблон функции открытия попапа
 function openPopup(popup) {
@@ -103,7 +88,7 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
   openProfilePopup();
 
   //когда открыт попап ред.профиля с валидными данными,кнопка сразу активна
-  profilePopupValidator.activeSubmitButtonEditProfilePopup();
+  profilePopupValidator.activeButton();
 });
 
 addCardButton.addEventListener('click', () => {

@@ -21,15 +21,22 @@ class Card {
 
   //обработчики
   _setEventListeners(){
+    //слушатель кнопки удаления
     this._element.querySelector('.elements__btn-delete').addEventListener('click', () => {
       this._deleteCard();
     });
+
+    //слушатель кнопки лайка
     this._element.querySelector('.elements__icon').addEventListener('click', () => {
       this._likeCard();
     });
+
+    //слушатель превью
     this._element.querySelector('.elements__image').addEventListener('click', () => {
       this._handleOpenPopup();
     });
+
+    //слушатель на закрытие попапа превью
     popupImage.querySelector('.popup__close').addEventListener('click', () => {
       this._handleClosePopup();
     })

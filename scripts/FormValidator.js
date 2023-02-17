@@ -53,8 +53,7 @@ _toggleButtonState(){
   if(this._hasInvalidInput(this._inputList)) {
     this.disabledButton();
   } else {
-    this._buttonElement.removeAttribute('disabled', '');
-    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this.activeButton();
   }
 };
 
@@ -76,7 +75,7 @@ disabledButton() {
 }
 
 //делает кнопку активной при открытии попапа с валидными данными
-activeSubmitButtonEditProfilePopup(){
+activeButton(){
   this._buttonElement.classList.remove(this._inactiveButtonClass);
   this._buttonElement.removeAttribute('disabled', true)
 }
