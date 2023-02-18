@@ -1,11 +1,15 @@
-import { popupImage, popupBigImage, popupImageTitle } from "./index.js";
+//import { popupImage, popupBigImage, popupImageTitle} from "./index.js";
+
 
 class Card {
-  constructor(title, image, template){
+  constructor(title, image, template, handleCardClick ){
     this._template = template;
     this._image = image;
     this._title = title;
+    this._handleCardClick = handleCardClick;
   }
+
+
 
   //Получаем разметку из template.Приватный метод, взываем внутри класса, чтобы получить готовую разметку перед размещением на страницу.
   //возвращаем DOM элемент карточки 
@@ -31,9 +35,13 @@ class Card {
     });
 
     //слушатель превью
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleOpenPopup();
-    });
+    // this._element.querySelector('.elements__image').addEventListener('click', () => {
+    //   this._handleOpenPopup();
+    // });
+
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._title, this._image);
+    })
   }
 
 
@@ -42,24 +50,26 @@ class Card {
   }
 
   _likeCard(){
-    const likeBtn = this._element.querySelector('.elements__icon');
-    likeBtn.classList.toggle('elements__icon_active');
+    //const likeBtn = this._element.querySelector('.elements__icon');
+    this._likeButton.classList.toggle('elements__icon_active');
   }
 
   _handleOpenPopup(){
-    popupImage.classList.add('popup_opened');
+    this._openPopup();
     popupBigImage.src = this._image;
     popupBigImage.alt = this._title;
     popupImageTitle.textContent = this._title;
   }
 
-  _handleClosePopup(){
-    popupImage.classList.remove('popup_opened')
-  }
+  // _handleClosePopup(){
+  //   popupImage.classList.remove('popup_opened')
+  // }
 
   //публичный метод
   generateCard(){
     this._element = this._getElementFromTemplate();
+    this._likeButton = this._element.querySelector('.elements__icon');
+    this._cardImage = this._element.querySelector('.elements__image');
     this._setEventListeners();//доб.обработчики
 
     this._element.querySelector('.elements__image').src = this._image;

@@ -35,6 +35,8 @@ const config = {
   errorClass: 'popup__input-error'
 }
 
+
+
 //валидация формы добавления карточки
 const newCardPopupValidator = new FormValidator(config, newCardForm);
 newCardPopupValidator.enableValidation();
@@ -45,7 +47,7 @@ profilePopupValidator.enableValidation();
 
 //функци.созд. карточки через новый экземпляр класса.
 function createCard(title, image) {
-  const card = new Card(title, image, '.elements-template');
+  const card = new Card(title, image, '.elements-template', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -97,7 +99,6 @@ addCardButton.addEventListener('click', () => {
 });
 
 function openProfilePopup(e) {
- // e.preventDefault();
   openPopup(profilePopup);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
@@ -105,7 +106,6 @@ function openProfilePopup(e) {
 }
 
 function openAddCardPopup(e) {
-  //e.preventDefault();
   openPopup(newCardPopup);
 }
 
@@ -151,3 +151,10 @@ const handleEscKeyup = (evt) => {
     closePopup(activPopup);
   }
 }; 
+
+function handleCardClick(title, image) {
+  openPopup(popupImage)
+  popupImageTitle.textContent = title;
+  popupBigImage.alt = title;
+  popupBigImage.src = image;
+}
