@@ -11,11 +11,10 @@ class Card {
   //возвращаем DOM элемент карточки 
   _getElementFromTemplate(){
     const cardElement =  document
-      .querySelector('.elements-template')
+      .querySelector(this._template)
       .content
       .querySelector('.elements__element')
       .cloneNode(true);
-
       return cardElement;
   }
 
@@ -35,14 +34,10 @@ class Card {
     this._element.querySelector('.elements__image').addEventListener('click', () => {
       this._handleOpenPopup();
     });
-
-    //слушатель на закрытие попапа превью
-    popupImage.querySelector('.popup__close').addEventListener('click', () => {
-      this._handleClosePopup();
-    })
   }
 
-  _deleteCard(){
+
+  _deleteCard() {
     this._element.remove();
   }
 
@@ -60,7 +55,6 @@ class Card {
 
   _handleClosePopup(){
     popupImage.classList.remove('popup_opened')
-
   }
 
   //публичный метод

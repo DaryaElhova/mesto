@@ -45,7 +45,7 @@ profilePopupValidator.enableValidation();
 
 //функци.созд. карточки через новый экземпляр класса.
 function createCard(title, image) {
-  const card = new Card(title, image, '.elements__template');
+  const card = new Card(title, image, '.elements-template');
   const cardElement = card.generateCard();
   return cardElement;
 }
