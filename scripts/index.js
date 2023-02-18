@@ -2,15 +2,15 @@ import initialCards from './initialcards.js'
 import Card from './Card.js'
 import FormValidator from './FormValidator.js';
 
-export const popupImage = document.querySelector('.popup_image');
-export const popupBigImage = popupImage.querySelector('.popup__big-image');
-export const popupImageTitle = popupImage.querySelector('.popup__title');
-
 const buttonOpenEditProfilePopup = document.querySelector('.profile__button');
 const profilePopup = document.querySelector('.popup_edit_profile');
 
+const popupImage = document.querySelector('.popup_image'); 
+const popupBigImage = popupImage.querySelector('.popup__big-image'); 
+const popupImageTitle = popupImage.querySelector('.popup__title'); 
+
 const closeProfilePopup = profilePopup.querySelector('.popup__close');
-const formElement = profilePopup.querySelector('.popup__form');
+const profileForm = document.forms["form-edit-profile"];
 const nameInput = profilePopup.querySelector('.popup__field_type_name');
 const jobInput = profilePopup.querySelector('.popup__field_type_job');
 
@@ -20,7 +20,7 @@ const addCardButton = document.querySelector('.profile__button-add');
 const newCardPopup = document.querySelector('.popup_add_card');
 
 const closeAddCardPopup = newCardPopup.querySelector('.popup__close');
-const newCardForm = newCardPopup.querySelector('.popup__form');
+const newCardForm = document.forms["form-add-card"];
 const newCardName = newCardPopup.querySelector('.popup__field_type_region');
 const newCardLink = newCardPopup.querySelector('.popup__field_type_link');
 
@@ -42,7 +42,7 @@ const newCardPopupValidator = new FormValidator(config, newCardForm);
 newCardPopupValidator.enableValidation();
 
 //валидация формы редактирования профиля
-const profilePopupValidator  = new FormValidator(config, formElement);
+const profilePopupValidator  = new FormValidator(config, profileForm);
 profilePopupValidator.enableValidation();
 
 //функци.созд. карточки через новый экземпляр класса.
@@ -127,7 +127,7 @@ function submitEditProfileForm(evt) {
   closePopup(profilePopup);
 }
 
-formElement.addEventListener('submit', submitEditProfileForm);
+profileForm.addEventListener('submit', submitEditProfileForm);
 
 
 //закрытие попапа по оверлею

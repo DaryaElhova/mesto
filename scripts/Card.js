@@ -1,6 +1,3 @@
-//import { popupImage, popupBigImage, popupImageTitle} from "./index.js";
-
-
 class Card {
   constructor(title, image, template, handleCardClick ){
     this._template = template;
@@ -8,8 +5,6 @@ class Card {
     this._title = title;
     this._handleCardClick = handleCardClick;
   }
-
-
 
   //Получаем разметку из template.Приватный метод, взываем внутри класса, чтобы получить готовую разметку перед размещением на страницу.
   //возвращаем DOM элемент карточки 
@@ -20,6 +15,21 @@ class Card {
       .querySelector('.elements__element')
       .cloneNode(true);
       return cardElement;
+  }
+
+//вызов generateCard до setEventLiteners чтобы у слушателей
+// был доступ к переменным
+  generateCard(){
+    this._element = this._getElementFromTemplate();
+    this._likeButton = this._element.querySelector('.elements__icon');
+    this._cardImage = this._element.querySelector('.elements__image');
+    this._setEventListeners();//доб.обработчики
+
+    this._element.querySelector('.elements__image').src = this._image;
+    this._element.querySelector('.elements__image').alt = this._title;
+    this._element.querySelector('.elements__title').textContent = this._title;
+
+    return this._element;
   }
 
   //обработчики
@@ -35,22 +45,16 @@ class Card {
     });
 
     //слушатель превью
-    // this._element.querySelector('.elements__image').addEventListener('click', () => {
-    //   this._handleOpenPopup();
-    // });
-
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._title, this._image);
     })
   }
-
 
   _deleteCard() {
     this._element.remove();
   }
 
   _likeCard(){
-    //const likeBtn = this._element.querySelector('.elements__icon');
     this._likeButton.classList.toggle('elements__icon_active');
   }
 
@@ -61,23 +65,6 @@ class Card {
     popupImageTitle.textContent = this._title;
   }
 
-  // _handleClosePopup(){
-  //   popupImage.classList.remove('popup_opened')
-  // }
-
-  //публичный метод
-  generateCard(){
-    this._element = this._getElementFromTemplate();
-    this._likeButton = this._element.querySelector('.elements__icon');
-    this._cardImage = this._element.querySelector('.elements__image');
-    this._setEventListeners();//доб.обработчики
-
-    this._element.querySelector('.elements__image').src = this._image;
-    this._element.querySelector('.elements__image').alt = this._title;
-    this._element.querySelector('.elements__title').textContent = this._title;
-
-    return this._element;
-  }
 }
 
 export default Card;
