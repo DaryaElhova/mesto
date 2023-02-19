@@ -86,24 +86,23 @@ function openPopup(popup) {
   document.addEventListener('keyup', handleEscKeyup);
 }
 
+//-----слушатели и функции на кнопки открытия попапов----------
 buttonOpenEditProfilePopup.addEventListener('click', () => {
   openProfilePopup();
-
   //когда открыт попап ред.профиля с валидными данными,кнопка сразу активна
   profilePopupValidator.resetValidation();
-});
-
-addCardButton.addEventListener('click', () => {
-  openAddCardPopup();
-  newCardPopupValidator.resetValidation();
 });
 
 function openProfilePopup(e) {
   openPopup(profilePopup);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-
 }
+
+addCardButton.addEventListener('click', () => {
+  openAddCardPopup();
+  newCardPopupValidator.resetValidation();
+});
 
 function openAddCardPopup(e) {
   openPopup(newCardPopup);
@@ -113,12 +112,16 @@ function openAddCardPopup(e) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keyup', handleEscKeyup);
-
 }
 
-closeProfilePopup.addEventListener('click', () => closePopup(profilePopup));
-
-closeAddCardPopup.addEventListener('click', () => closePopup(newCardPopup));
+//Установка функции удалния сразу на все крестики. Находим все кнопки:
+const closeButtons = document.querySelectorAll('.popup__close');
+//Перебираем через forEach, находим ближайшую к кнопке попап
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => closePopup(popup));
+})
 
 function submitEditProfileForm(evt) {
   evt.preventDefault();
