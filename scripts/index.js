@@ -152,6 +152,8 @@ const handleEscKeyup = (evt) => {
   }
 }; 
 
+//функция открытитя превью. 
+//Передаем в конструктор класса кард и при создании экземпляра Кард
 function handleCardClick(title, image) {
   openPopup(popupImage)
   popupImageTitle.textContent = title;

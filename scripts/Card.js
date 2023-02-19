@@ -25,8 +25,8 @@ class Card {
     this._cardImage = this._element.querySelector('.elements__image');
     this._setEventListeners();//доб.обработчики
 
-    this._element.querySelector('.elements__image').src = this._image;
-    this._element.querySelector('.elements__image').alt = this._title;
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._title;
     this._element.querySelector('.elements__title').textContent = this._title;
 
     return this._element;
@@ -40,8 +40,8 @@ class Card {
     });
 
     //слушатель кнопки лайка
-    this._element.querySelector('.elements__icon').addEventListener('click', () => {
-      this._likeCard();
+    this._likeButton.addEventListener('click', () => {
+      this._toggleLike();
     });
 
     //слушатель превью
@@ -54,16 +54,16 @@ class Card {
     this._element.remove();
   }
 
-  _likeCard(){
+  _toggleLike(){
     this._likeButton.classList.toggle('elements__icon_active');
   }
 
-  _handleOpenPopup(){
-    this._openPopup();
-    popupBigImage.src = this._image;
-    popupBigImage.alt = this._title;
-    popupImageTitle.textContent = this._title;
-  }
+  // _handleOpenPopup(){
+  //   this._openPopup();
+  //   popupBigImage.src = this._image;
+  //   popupBigImage.alt = this._title;
+  //   popupImageTitle.textContent = this._title;
+  // }
 
 }
 
