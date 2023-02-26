@@ -86,12 +86,10 @@ resetValidation() {
   
 }
 
-
 enableValidation(){
   this._setEventListeners()
 }
 };
-
 
 export default FormValidator;
 

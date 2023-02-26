@@ -57,14 +57,6 @@ class Card {
   _toggleLike(){
     this._likeButton.classList.toggle('elements__icon_active');
   }
-
-  // _handleOpenPopup(){
-  //   this._openPopup();
-  //   popupBigImage.src = this._image;
-  //   popupBigImage.alt = this._title;
-  //   popupImageTitle.textContent = this._title;
-  // }
-
 }
 
 export default Card;
