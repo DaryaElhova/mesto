@@ -1,10 +1,10 @@
 import {
   buttonOpenEditProfilePopup,
   profilePopup,
-  popupImage,
+  //popupImage,
   popupBigImage,
   popupImageTitle,
-  closeProfilePopup,
+  //closeProfilePopup,
   profileForm,
   nameInput,
   jobInput,
@@ -12,7 +12,7 @@ import {
   jobProfile,
   addCardButton,
   newCardPopup,
-  closeAddCardPopup,
+  //closeAddCardPopup,
   newCardForm,
   newCardName,
   newCardLink,
@@ -24,15 +24,20 @@ import initialCards from './initialcards.js'
 import Card from './Card.js'
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
 
+
+
+//отрисовка элементов из массива
 const cardList = new Section ({
   items: initialCards,
   renderer: (item) => {
-    this._items.forEach((item) => {
-      cardList.addItems(createCard(item))//создаем и добавляем карточку
-    })
-  }, cardsContainer
-})
+      cardList.addItems(createCard(item.name, item.link))//создаем и добавляем карточку
+  }
+}, '.elements')
+
+//добавляет каточки в контейнер
+cardList.rendererItems(); 
 
 //валидация формы добавления карточки
 const newCardPopupValidator = new FormValidator(config, newCardForm);
@@ -55,15 +60,8 @@ const addCard = (title, image) => {
   cardsContainer.prepend(card);
 }
 
-//на каждом элементе массива вызываем функци добавл карточки
-//(она в свою очередь вызывает create)
-const renderCards = (initialCards) => {
-  initialCards.forEach((item) => {
-    addCard(item.name, item.link);
-  })
-}
-
-renderCards(initialCards);
+const popupImage = new PopupWithImage('.popup_image');
+popupImage.setEventListeners();
 
 
 newCardForm.addEventListener('submit', (e) => {
@@ -73,15 +71,6 @@ newCardForm.addEventListener('submit', (e) => {
   newCardForm.reset();
 })
 
-
-//шаблон функции открытия попапа
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-
-  //слушательна  закрытие попапа по ESC устанавливается 
-  //в ф-ю откр попапа, т.к должен срабатывать когда он открыт
-  document.addEventListener('keyup', handleEscKeyup);
-}
 
 //-----слушатели и функции на кнопки открытия попапов----------
 buttonOpenEditProfilePopup.addEventListener('click', () => {
@@ -105,20 +94,14 @@ function openAddCardPopup(e) {
   openPopup(newCardPopup);
 }
 
-//шаблон функции закрытия попапа
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keyup', handleEscKeyup);
-}
-
 //Установка функции удалния сразу на все крестики. Находим все кнопки:
-const closeButtons = document.querySelectorAll('.popup__close');
-//Перебираем через forEach, находим ближайшую к кнопке попап
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  // устанавливаем обработчик закрытия на крестик
-  button.addEventListener('click', () => closePopup(popup));
-})
+// const closeButtons = document.querySelectorAll('.popup__close');
+// //Перебираем через forEach, находим ближайшую к кнопке попап
+// closeButtons.forEach((button) => {
+//   const popup = button.closest('.popup');
+//   // устанавливаем обработчик закрытия на крестик
+//   button.addEventListener('click', () => closePopup(popup));
+// })
 
 function submitEditProfileForm(evt) {
   evt.preventDefault();
@@ -131,32 +114,30 @@ profileForm.addEventListener('submit', submitEditProfileForm);
 
 
 //закрытие попапа по оверлею
-function closePopupOverlay (popup) {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    }
-  });
-};
+// function closePopupOverlay (popup) {
+//   popup.addEventListener('click', (evt) => {
+//     if (evt.target === evt.currentTarget) {
+//       closePopup(popup);
+//     }
+//   });
+// };
 
-closePopupOverlay(profilePopup);
-closePopupOverlay(popupImage);
-closePopupOverlay(newCardPopup);
+// closePopupOverlay(profilePopup);
+// closePopupOverlay(popupImage);
+// closePopupOverlay(newCardPopup);
 
-//закрытите попапа клавишой Esc
-const handleEscKeyup = (evt) => {
-  evt.preventDefault();
-  if (evt.key === 'Escape') {
-    const activPopup = document.querySelector('.popup_opened');
-    closePopup(activPopup);
-  }
-}; 
+// //закрытите попапа клавишой Esc
+// const handleEscKeyup = (evt) => {
+//   evt.preventDefault();
+//   if (evt.key === 'Escape') {
+//     const activPopup = document.querySelector('.popup_opened');
+//     closePopup(activPopup);
+//   }
+// }; 
 
 //функция открытитя превью. 
 //Передаем в конструктор класса кард и при создании экземпляра Кард
 function handleCardClick(title, image) {
-  openPopup(popupImage)
-  popupImageTitle.textContent = title;
-  popupBigImage.alt = title;
-  popupBigImage.src = image;
+  //вызываем публичный метод на конкретном экземпляре класса
+  popupImage.open(title, image);
 }
