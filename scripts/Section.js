@@ -13,7 +13,7 @@ export default class Section {
   }
 
 //метод добавления карточки в контейнер
-//Передаем этот элемент в метод addItem, который добавляет его в контейнер.
+//Передаем этот элемент в метод addItems, который добавляет его в контейнер.
   addItems(element){
     this._container.prepend(element);
   }

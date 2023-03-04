@@ -1,22 +1,10 @@
 import {
   buttonOpenEditProfilePopup,
-  profilePopup,
-  //popupImage,
-  popupBigImage,
-  popupImageTitle,
-  //closeProfilePopup,
   profileForm,
   nameInput,
   jobInput,
-  nameProfile,
-  jobProfile,
   addCardButton,
-  newCardPopup,
-  //closeAddCardPopup,
   newCardForm,
-  newCardName,
-  newCardLink,
-  cardsContainer,
   config
 } from '../utils/constants.js'
 
@@ -25,19 +13,76 @@ import Card from './Card.js'
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 
+//функци.созд. карточки через новый экземпляр класса.
+function createCard(title, image) {
+  const card = new Card(title, image, '.elements-template', handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 //отрисовка элементов из массива
 const cardList = new Section ({
   items: initialCards,
   renderer: (item) => {
-      cardList.addItems(createCard(item.name, item.link))//создаем и добавляем карточку
+    cardList.addItems(createCard(item.name, item.link))//создаем и добавляем карточку
   }
 }, '.elements')
 
 //добавляет каточки в контейнер
 cardList.rendererItems(); 
+
+//Превью попап
+const popupImage = new PopupWithImage('.popup_image');
+popupImage.setEventListeners();
+
+
+const userInfo = new UserInfo({
+  userName:'.profile__title',
+  userInfo: '.profile__subtitle'
+});
+
+ //Экземпляр класса для попапа редактирования профиля
+const editProfilePopup = new PopupWithForm ('.popup_edit_profile',{
+  handleSubmitForm: (userData) => {
+  userInfo.setUserInfo({
+    name: userData.name,
+    info: userData.info
+  }); 
+
+  editProfilePopup.close();
+  }
+  });
+
+editProfilePopup.setEventListeners();
+
+buttonOpenEditProfilePopup.addEventListener('click', () => {
+  editProfilePopup.open();
+  //когда открыт попап ред.профиля с валидными данными,кнопка сразу активна
+  profilePopupValidator.resetValidation();
+  const actualUserInfo = userInfo.getUserInfo();
+  nameInput.value = actualUserInfo.name;
+  jobInput.value = actualUserInfo.info;
+});
+
+//Экземпляр класса добавления карточки через форму
+const addNewCardPopup = new PopupWithForm('.popup_add_card', {
+  handleSubmitForm: (item) => {
+    cardList.addItems(createCard(item.region, item.link));
+    addNewCardPopup.close()
+  },
+})
+
+addNewCardPopup.setEventListeners();
+
+addCardButton.addEventListener('click', () => {
+  addNewCardPopup.open();
+  newCardPopupValidator.resetValidation();
+});
+
 
 //валидация формы добавления карточки
 const newCardPopupValidator = new FormValidator(config, newCardForm);
@@ -47,93 +92,7 @@ newCardPopupValidator.enableValidation();
 const profilePopupValidator  = new FormValidator(config, profileForm);
 profilePopupValidator.enableValidation();
 
-//функци.созд. карточки через новый экземпляр класса.
-function createCard(title, image) {
-  const card = new Card(title, image, '.elements-template', handleCardClick);
-  const cardElement = card.generateCard();
-  return cardElement;
-}
 
-//добавл.карточку в разметку
-const addCard = (title, image) => {
-  const card = createCard(title, image);
-  cardsContainer.prepend(card);
-}
-
-const popupImage = new PopupWithImage('.popup_image');
-popupImage.setEventListeners();
-
-
-newCardForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  addCard(newCardName.value, newCardLink.value);
-  closePopup(newCardPopup);
-  newCardForm.reset();
-})
-
-
-//-----слушатели и функции на кнопки открытия попапов----------
-buttonOpenEditProfilePopup.addEventListener('click', () => {
-  openProfilePopup();
-  //когда открыт попап ред.профиля с валидными данными,кнопка сразу активна
-  profilePopupValidator.resetValidation();
-});
-
-function openProfilePopup(e) {
-  openPopup(profilePopup);
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
-}
-
-addCardButton.addEventListener('click', () => {
-  openAddCardPopup();
-  newCardPopupValidator.resetValidation();
-});
-
-function openAddCardPopup(e) {
-  openPopup(newCardPopup);
-}
-
-//Установка функции удалния сразу на все крестики. Находим все кнопки:
-// const closeButtons = document.querySelectorAll('.popup__close');
-// //Перебираем через forEach, находим ближайшую к кнопке попап
-// closeButtons.forEach((button) => {
-//   const popup = button.closest('.popup');
-//   // устанавливаем обработчик закрытия на крестик
-//   button.addEventListener('click', () => closePopup(popup));
-// })
-
-function submitEditProfileForm(evt) {
-  evt.preventDefault();
-  nameProfile.textContent = nameInput.value;
-  jobProfile.textContent = jobInput.value;
-  closePopup(profilePopup);
-}
-
-profileForm.addEventListener('submit', submitEditProfileForm);
-
-
-//закрытие попапа по оверлею
-// function closePopupOverlay (popup) {
-//   popup.addEventListener('click', (evt) => {
-//     if (evt.target === evt.currentTarget) {
-//       closePopup(popup);
-//     }
-//   });
-// };
-
-// closePopupOverlay(profilePopup);
-// closePopupOverlay(popupImage);
-// closePopupOverlay(newCardPopup);
-
-// //закрытите попапа клавишой Esc
-// const handleEscKeyup = (evt) => {
-//   evt.preventDefault();
-//   if (evt.key === 'Escape') {
-//     const activPopup = document.querySelector('.popup_opened');
-//     closePopup(activPopup);
-//   }
-// }; 
 
 //функция открытитя превью. 
 //Передаем в конструктор класса кард и при создании экземпляра Кард
