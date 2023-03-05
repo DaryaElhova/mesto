@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="root">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="логотип">
+    <img class="header__logo" src="<%=require('../src/images/logo.svg')%>" alt="логотип">
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="./images/Avatar.png" alt="аватар профиля">
+      <img class="profile__avatar" src="<%=require('../src/images/Avatar.png')%>" alt="аватар профиля">
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button class="profile__button" type="button" aria-label="Редактировать профиль"></button>
@@ -70,15 +69,5 @@
     </div>
   </li>
 </template>
-<script type="module" src="./scripts/initialcards.js"></script>
-<script type="module" src="./scripts/index.js"></script>
-<script type="module" src="./scripts/Card.js"></script>
-<script type="module" src="./scripts/FormValidator.js"></script>
-<script type="module" src="./utils/constants.js"></script>
-<script type="module" src="./scripts/Section.js"></script>
-<script type="module" src="./scripts/Popup.js"></script>
-<script type="module" src="./scripts/PopupWithImage.js"></script>
-<script type="module" src="./scripts/PopupWithForm.js"></script>
-<script type="module" src="./scripts/UserInfo.js"></script>
 </body>
 </html>
