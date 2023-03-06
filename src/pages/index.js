@@ -67,6 +67,7 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
   const actualUserInfo = userInfo.getUserInfo();
   nameInput.value = actualUserInfo.name;
   jobInput.value = actualUserInfo.info;
+  //editProfilePopup.setInputValues(actualUserInfo);
 });
 
 //Экземпляр класса добавления карточки через форму
