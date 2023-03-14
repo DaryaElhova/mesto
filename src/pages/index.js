@@ -16,7 +16,17 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css'; 
+// import Api from '../components/Api.js';
 
+// let currentUserId;
+
+// const api = new Api(
+//   "https://mesto.nomoreparties.co/v1/cohort-61", "4ad54b8d-418c-4c83-835c-6ae9b7d3aa74"
+//   );
+
+//   api.getCardsApi().then((item) => {
+//     console.log(item);
+//   })
 
 //функци.созд. карточки через новый экземпляр класса.
 function createCard(title, image) {
@@ -27,14 +37,14 @@ function createCard(title, image) {
 
 //отрисовка элементов из массива
 const cardList = new Section ({
-  items: initialCards,
+  //items: initialCards,
   renderer: (item) => {
     cardList.addItems(createCard(item.name, item.link))//создаем и добавляем карточку
   }
 }, '.elements')
 
 //добавляет каточки в контейнер
-cardList.rendererItems(); 
+cardList.rendererItems(items); 
 
 //Превью попап
 const popupImage = new PopupWithImage('.popup_image');
