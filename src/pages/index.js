@@ -29,6 +29,11 @@ const api = new Api(
     cardList.rendererItems(items); 
   })
 
+  api.getUserInfoApi().then((data) => {
+    userInfo.setUserInfo({name: data.name, info:data.about});
+    userInfo.setUserAvatar(data.avatar);
+  })
+
 //функци.созд. карточки через новый экземпляр класса.
 function createCard(title, image) {
   const card = new Card(title, image, '.elements-template', handleCardClick);
@@ -54,7 +59,8 @@ popupImage.setEventListeners();
 
 const userInfo = new UserInfo({
   userName:'.profile__title',
-  userInfo: '.profile__subtitle'
+  userInfo: '.profile__subtitle',
+  userAvatar: '.profile__avatar'
 });
 
  //Экземпляр класса для попапа редактирования профиля

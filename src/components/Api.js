@@ -30,14 +30,12 @@ getCardsApi(){
 //Метод загрузки информации о пользователе с сервера
 getUserInfoApi(){
   return fetch(`${this._basePath}/users/me`, {
-    headers: this._getHeaders,
+    headers: this._getHeaders(),
   }).then(this._getJson)
 }
 
-
-
 //Метод редактирования данных профиля
-editProfileInfo(data){
+editUserInfo(data){
   return fetch(`${this._basePath}/users/me`, {
     method: "PATCH",
     headers: this._headers,
