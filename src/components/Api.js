@@ -8,31 +8,33 @@ export default class Api{
 _getHeaders(){
   return {
     "Content-Type" : "application/json",
-    autorisation : this._token
+    authorization: this._token
   }
 }
 
 //Метод,который позволит не дублировать код на проверку запроса
-_getJson(){
+_getJson(res){
   if (res.ok) {
-    return res.json;
+    return res.json();
   }
   return Promise.reject(`Ошибка${res.status}`);
-}
-
-//Метод загрузки информации о пользователе с сервера
-getUserInfo(){
-  return fetch(`${this._basePath}/users/me`, {
-    headers: this._getHeaders,
-  }).then(this._getJson)
 }
 
 //Метод загрузки карточек с сервера
 getCardsApi(){
   return fetch(`${this._basePath}/cards`, {
-    headers: this._getHeaders
+    headers: this._getHeaders()
   }).then(this._getJson)
 }
+
+//Метод загрузки информации о пользователе с сервера
+getUserInfoApi(){
+  return fetch(`${this._basePath}/users/me`, {
+    headers: this._getHeaders,
+  }).then(this._getJson)
+}
+
+
 
 //Метод редактирования данных профиля
 editProfileInfo(data){

@@ -16,17 +16,18 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css'; 
-// import Api from '../components/Api.js';
+import Api from '../components/Api.js';
 
 // let currentUserId;
 
-// const api = new Api(
-//   "https://mesto.nomoreparties.co/v1/cohort-61", "4ad54b8d-418c-4c83-835c-6ae9b7d3aa74"
-//   );
+const api = new Api(
+  "https://mesto.nomoreparties.co/v1/cohort-61",
+   "4ad54b8d-418c-4c83-835c-6ae9b7d3aa74"
+  );
 
-//   api.getCardsApi().then((item) => {
-//     console.log(item);
-//   })
+  api.getCardsApi().then((items) => {
+    cardList.rendererItems(items); 
+  })
 
 //функци.созд. карточки через новый экземпляр класса.
 function createCard(title, image) {
@@ -44,7 +45,7 @@ const cardList = new Section ({
 }, '.elements')
 
 //добавляет каточки в контейнер
-cardList.rendererItems(items); 
+//cardList.rendererItems(items); 
 
 //Превью попап
 const popupImage = new PopupWithImage('.popup_image');
