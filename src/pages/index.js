@@ -34,6 +34,7 @@ const api = new Api(
     userInfo.setUserAvatar(data.avatar);
   })
 
+
 //функци.созд. карточки через новый экземпляр класса.
 function createCard(title, image) {
   const card = new Card(title, image, '.elements-template', handleCardClick);
@@ -49,8 +50,6 @@ const cardList = new Section ({
   }
 }, '.elements')
 
-//добавляет каточки в контейнер
-//cardList.rendererItems(items); 
 
 //Превью попап
 const popupImage = new PopupWithImage('.popup_image');
@@ -64,14 +63,20 @@ const userInfo = new UserInfo({
 });
 
  //Экземпляр класса для попапа редактирования профиля
+ //Внутри функции колбэка помещаем метод редактирования данных профиля. 
 const editProfilePopup = new PopupWithForm ('.popup_edit_profile',{
   handleSubmitForm: (userData) => {
-  userInfo.setUserInfo({
-    name: userData.name,
-    info: userData.info
-  }); 
-
-  editProfilePopup.close();
+    api.updateUserInfo(userData)
+      .then((res) => {
+      userInfo.setUserInfo({
+        name: res.name,
+        info: res.about
+      })
+      editProfilePopup.close();
+    })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`)
+      })
   }
   });
 

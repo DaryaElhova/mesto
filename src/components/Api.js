@@ -35,11 +35,14 @@ getUserInfoApi(){
 }
 
 //Метод редактирования данных профиля
-editUserInfo(data){
+updateUserInfo(data){
   return fetch(`${this._basePath}/users/me`, {
     method: "PATCH",
-    headers: this._headers,
-    body: JSON.stringify(data)
+    headers: this._getHeaders(),
+    body: JSON.stringify({
+      name: data.name,
+      about: data.info
+    })
   }).then(this._getJson)
 }
 
