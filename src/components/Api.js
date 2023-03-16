@@ -46,4 +46,16 @@ updateUserInfo(data){
   }).then(this._getJson)
 }
 
+//Метод добавления новых карточек
+addNewCardApi(cardData){
+  return fetch(`${this._basePath}/cards`, {
+    method: "POST",
+    headers: this._getHeaders(),
+    body: JSON.stringify({
+      name: cardData.region,
+      link: cardData.link
+    })
+  }).then(this._getJson)
+}
+
 }

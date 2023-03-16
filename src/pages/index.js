@@ -44,7 +44,6 @@ function createCard(title, image) {
 
 //отрисовка элементов из массива
 const cardList = new Section ({
-  //items: initialCards,
   renderer: (item) => {
     cardList.addItems(createCard(item.name, item.link))//создаем и добавляем карточку
   }
@@ -94,8 +93,13 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
 
 //Экземпляр класса добавления карточки через форму
 const addNewCardPopup = new PopupWithForm('.popup_add_card', {
-  handleSubmitForm: (item) => {
-    cardList.addItems(createCard(item.region, item.link));
+  handleSubmitForm: (cardData) => {
+    api.addNewCardApi(cardData)
+      .then((res) => {
+        cardList.addItems(createCard(cardData.region, cardData.link))
+
+    })
+    //cardList.addItems(createCard(item.region, item.link));
     addNewCardPopup.close()
   },
 })
