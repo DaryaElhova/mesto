@@ -1,8 +1,10 @@
 class Card {
-  constructor(title, image, template, handleCardClick ){
+  constructor(cardData, template, handleCardClick ){
+    this._card = cardData;
+    this._image  = this._card.link;
+    this._title = this._card.name;
+    this._likes = this._card.likes;
     this._template = template;
-    this._image = image;
-    this._title = title;
     this._handleCardClick = handleCardClick;
   }
 
@@ -17,6 +19,17 @@ class Card {
       return cardElement;
   }
 
+  renderLikeCounter(){
+    this._counterSelector = this._element.querySelector('.elements__counter');
+    console.log(this._counterSelector);
+    if(this._likes.length === 0){
+      this._counterSelector.textContent = '';
+    } else {
+      this._counterSelector.textContent = this._likes.length; 
+    }
+  }
+
+
 //вызов generateCard до setEventLiteners чтобы у слушателей
 // был доступ к переменным
   generateCard(){
@@ -28,7 +41,7 @@ class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = this._title;
     this._element.querySelector('.elements__title').textContent = this._title;
-
+    this.renderLikeCounter();
     return this._element;
   }
 
@@ -57,6 +70,8 @@ class Card {
   _toggleLike(){
     this._likeButton.classList.toggle('elements__icon_active');
   }
+
+
 }
 
 export default Card;

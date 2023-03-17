@@ -36,8 +36,8 @@ const api = new Api(
 
 
 //функци.созд. карточки через новый экземпляр класса.
-function createCard(title, image) {
-  const card = new Card(title, image, '.elements-template', handleCardClick);
+function createCard(item) {
+  const card = new Card(item, '.elements-template', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -45,7 +45,7 @@ function createCard(title, image) {
 //отрисовка элементов из массива
 const cardList = new Section ({
   renderer: (item) => {
-    cardList.addItems(createCard(item.name, item.link))//создаем и добавляем карточку
+    cardList.addItems(createCard(item))//создаем и добавляем карточку
   }
 }, '.elements')
 
