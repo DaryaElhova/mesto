@@ -58,6 +58,22 @@
     <button class="popup__close" type="button"></button>
   </figure>
 </div>
+<div class="popup popup__submit">
+  <div class="popup__container">
+    <h2>Вы уверены?</h2>
+    <button class="popup__btn" type="submit">Да</button>
+  </div>
+</div>
+<div class="popup popup__update">
+  <div class="popup__container">
+    <form>
+      <h2>Обновить аватар</h2>
+      <input class="popup__field popup__field_type_update" type="url" id="update-avatar" value="" placeholder="Введите ссылку" required name="avatar">
+      <span class="update-avatar-error popup__error"></span>
+      <button class="popup__btn" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
 
 <template class="elements-template">
   <li class="elements__element">
