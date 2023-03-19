@@ -8,7 +8,6 @@ import {
   config
 } from '../utils/constants.js'
 
-import initialCards from '../utils/initialcards.js'
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -17,19 +16,21 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css'; 
 import Api from '../components/Api.js';
+//import PopupConfirm from '../components/PopupConfirm.js';
 
-// let currentUserId;
+//Глобальная переменная, перезаписывает тегущего пользователя
+let currentUserId;
 
 const api = new Api(
   "https://mesto.nomoreparties.co/v1/cohort-61",
    "4ad54b8d-418c-4c83-835c-6ae9b7d3aa74"
   );
 
-  api.getCardsApi().then((items) => {
-    cardList.rendererItems(items); 
-  })
-
-  api.getUserInfoApi().then((data) => {
+Promise.all([ api.getCardsApi(),api.getUserInfoApi()])
+  .then(([items, data]) => {
+    cardList.rendererItems(items);
+    //после выполнения промисов, в currentUserId будет записан текущий юзер карточки
+    currentUserId = data._id;
     userInfo.setUserInfo({name: data.name, info:data.about});
     userInfo.setUserAvatar(data.avatar);
   })
@@ -37,12 +38,12 @@ const api = new Api(
 
 //функци.созд. карточки через новый экземпляр класса.
 function createCard(item) {
-  const card = new Card(item, '.elements-template', handleCardClick);
+  const card = new Card(item, '.elements-template', handleCardClick, currentUserId);
   const cardElement = card.generateCard();
   return cardElement;
 }
 
-//отрисовка элементов из массива
+//отрисовка элементов 
 const cardList = new Section ({
   renderer: (item) => {
     cardList.addItems(createCard(item))//создаем и добавляем карточку
@@ -95,12 +96,13 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
 const addNewCardPopup = new PopupWithForm('.popup_add_card', {
   handleSubmitForm: (cardData) => {
     api.addNewCardApi(cardData)
-      .then((res) => {
-        cardList.addItems(createCard(cardData.region, cardData.link))
-
+      .then((item) => {
+        cardList.addItems(createCard(item))
+        addNewCardPopup.close()
     })
-    //cardList.addItems(createCard(item.region, item.link));
-    addNewCardPopup.close()
+      .catch((err) => {
+        console.log(err)
+      })
   },
 })
 
