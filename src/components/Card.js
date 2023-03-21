@@ -1,6 +1,7 @@
 class Card {
   constructor(cardData, template, currentUserId, handleActions){
     this._card = cardData;
+    this._cardId = cardData._id;
     this._image  = this._card.link;
     this._title = this._card.name;
     this._likes = this._card.likes;
@@ -54,14 +55,14 @@ class Card {
     } else {
       this._counterSelector.textContent = this._likes.length; 
     }
+    
   }
 
   //обработчики
   _setEventListeners(){
     if(this._isOwner) {
       this._deleteCardButton.addEventListener('click', () => {
-        this._confirm = document.querySelector('.popup__confirm');
-        this._confirm.classList.add('popup_opened');
+        this._handleCardDelete(this, this._cardId);
       })
     } else {
       this._element.querySelector('.elements__btn-delete').remove();

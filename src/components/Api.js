@@ -59,7 +59,7 @@ addNewCardApi(cardData){
 }
 
 deleteCardApi(cardId){
-  return fetch(`${this._basePath}/${cardId} `, {
+  return fetch(`${this._basePath}/cards/${cardId} `, {
     method: "DELETE",
     headers: this._getHeaders(),
   }).then(this._getJson);

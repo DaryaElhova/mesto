@@ -37,7 +37,7 @@ const cardList = new Section ({
 function createCard(item) {
   const card = new Card(item, '.elements-template', currentUserId,{
     handleCardClick: (title, image) => popupImage.open(title, image),
-    handleCardDelete: (cardData, cardId) => popupConfirmDelete.open(cardData,  cardId),
+    handleCardDelete: (cardData, cardId) => popupConfirmDelete.open(cardData, cardId),
   });
   const cardElement = card.generateCard();
   return cardElement;
