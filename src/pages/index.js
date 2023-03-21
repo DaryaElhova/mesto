@@ -16,7 +16,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css'; 
 import Api from '../components/Api.js';
-//import PopupConfirm from '../components/PopupConfirm.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 
 //Глобальная переменная, перезаписывает тегущего пользователя
 let currentUserId;
@@ -26,35 +26,50 @@ const api = new Api(
    "4ad54b8d-418c-4c83-835c-6ae9b7d3aa74"
   );
 
-Promise.all([ api.getCardsApi(),api.getUserInfoApi()])
-  .then(([items, data]) => {
-    cardList.rendererItems(items);
-    //после выполнения промисов, в currentUserId будет записан текущий юзер карточки
-    currentUserId = data._id;
-    userInfo.setUserInfo({name: data.name, info:data.about});
-    userInfo.setUserAvatar(data.avatar);
-  })
-
-
-//функци.созд. карточки через новый экземпляр класса.
-function createCard(item) {
-  const card = new Card(item, '.elements-template', handleCardClick, currentUserId);
-  const cardElement = card.generateCard();
-  return cardElement;
-}
-
-//отрисовка элементов 
+  //отрисовка элементов 
 const cardList = new Section ({
   renderer: (item) => {
     cardList.addItems(createCard(item))//создаем и добавляем карточку
   }
 }, '.elements')
 
+//функци.созд. карточки через новый экземпляр класса.
+function createCard(item) {
+  const card = new Card(item, '.elements-template', currentUserId,{
+    handleCardClick: (title, image) => popupImage.open(title, image),
+    handleCardDelete: (cardData, cardId) => popupConfirmDelete.open(cardData,  cardId),
+  });
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+Promise.all([api.getUserInfoApi(), api.getCardsApi()])
+  .then(([data, items]) => {
+    currentUserId = data._id;//важно присвоить CurrentUser до отрисовки
+    //после выполнения промисов, в currentUserId будет записан текущий юзер карточки
+    userInfo.setUserInfo({name: data.name, info:data.about});
+    userInfo.setUserAvatar(data.avatar);
+    cardList.rendererItems(items);
+  })
+
+const popupConfirmDelete = new PopupConfirm('.popup__confirm',{
+   handleConfirmation:(cardData, cardId) => {
+    api.deleteCardApi(cardId)
+      .then(() => {
+        cardData.deleteCard();
+        popupConfirmDelete.close();
+      })
+      .catch((err) => {
+        console.log(`Произошла ошибка ${err}`);
+      })
+  }
+})
+
+popupConfirmDelete.setEventListeners()
 
 //Превью попап
 const popupImage = new PopupWithImage('.popup_image');
 popupImage.setEventListeners();
-
 
 const userInfo = new UserInfo({
   userName:'.profile__title',
@@ -121,12 +136,3 @@ newCardPopupValidator.enableValidation();
 //валидация формы редактирования профиля
 const profilePopupValidator  = new FormValidator(config, profileForm);
 profilePopupValidator.enableValidation();
-
-
-
-//функция открытитя превью. 
-//Передаем в конструктор класса кард и при создании экземпляра Кард
-function handleCardClick(title, image) {
-  //вызываем публичный метод на конкретном экземпляре класса
-  popupImage.open(title, image);
-}

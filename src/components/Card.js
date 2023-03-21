@@ -1,14 +1,15 @@
 class Card {
-  constructor(cardData, template, handleCardClick, currentUserId){
+  constructor(cardData, template, currentUserId, handleActions){
     this._card = cardData;
     this._image  = this._card.link;
     this._title = this._card.name;
     this._likes = this._card.likes;
     this._template = template;
-    this._handleCardClick = handleCardClick;
-
     //isOwner возвращает true, если owner._id карточки совпарадет с currentUserId
     this._isOwner = cardData.owner._id === currentUserId;
+    this._handleCardClick = handleActions.handleCardClick;
+    this._handleCardDelete = handleActions.handleCardDelete;
+    this._handleLikeClick = handleActions.handleCardLike;
     }
 
   //Получаем разметку из template.Приватный метод, взываем внутри класса, чтобы получить готовую разметку перед размещением на страницу.
@@ -39,6 +40,13 @@ class Card {
     return this._element;
   }
 
+  //публичный метод удаления, вызвать из экз попапа
+  deleteCard(){
+    this._element.remove();
+    this._element = null;
+  }
+
+
   renderLikeCounter(){
     this._counterSelector = this._element.querySelector('.elements__counter');
     if(this._likes.length === 0){
@@ -54,7 +62,6 @@ class Card {
       this._deleteCardButton.addEventListener('click', () => {
         this._confirm = document.querySelector('.popup__confirm');
         this._confirm.classList.add('popup_opened');
-        this._deleteCard();
       })
     } else {
       this._element.querySelector('.elements__btn-delete').remove();
@@ -69,14 +76,6 @@ class Card {
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._title, this._image);
     })
-  }
-
-  // _deleteCard() {
-  //   this._element.remove();
-  // }
-
-  _deleteCard() {
-    this._deleteCardApi(this._id, this._element)
   }
 
   _toggleLike(){
