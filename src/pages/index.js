@@ -69,7 +69,7 @@ Promise.all([api.getUserInfoApi(), api.getCardsApi()])
     cardList.rendererItems(items);
   })
 
-const popupConfirmDelete = new PopupConfirm('.popup__confirm',{
+const popupConfirmDelete = new PopupConfirm('.popup_confirm',{
    handleConfirmation:(cardData, cardId) => {
     api.deleteCardApi(cardId)
       .then(() => {
@@ -120,7 +120,7 @@ const editProfilePopup = new PopupWithForm ('.popup_edit_profile',{
 
 editProfilePopup.setEventListeners();
 
-const changeAvatarPopup = new PopupWithForm('.popup__change-avatar',{
+const changeAvatarPopup = new PopupWithForm('.popup_change-avatar',{
   handleSubmitForm: (avatarLink) => {
     changeAvatarPopup.onSaveButtonClick();
     api.changeAvatarAPI(avatarLink)
