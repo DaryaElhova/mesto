@@ -96,7 +96,9 @@ const userInfo = new UserInfo({
  //Экземпляр класса для попапа редактирования профиля
  //Внутри функции колбэка помещаем метод редактирования данных профиля. 
 const editProfilePopup = new PopupWithForm ('.popup_edit_profile',{
-  handleSubmitForm: (userData) => {
+    handleSubmitForm: (userData) => {
+    //вызвать лоадер при отправке запроса
+    editProfilePopup.onSaveButtonClick();
     api.updateUserInfo(userData)
       .then((res) => {
       userInfo.setUserInfo({
@@ -108,6 +110,10 @@ const editProfilePopup = new PopupWithForm ('.popup_edit_profile',{
       .catch((err) => {
         console.log(`Ошибка ${err}`)
       })
+      //независимо от ответа вернуть исходное значение
+      .finally(() => {
+        editProfilePopup.onDataLoaded();
+      })
   }
   });
 
@@ -115,6 +121,7 @@ editProfilePopup.setEventListeners();
 
 const changeAvatarPopup = new PopupWithForm('.popup__change-avatar',{
   handleSubmitForm: (avatarLink) => {
+    changeAvatarPopup.onSaveButtonClick();
     api.changeAvatarAPI(avatarLink)
       .then((res) => {
         userInfo.setUserAvatar(res.avatar)
@@ -123,6 +130,10 @@ const changeAvatarPopup = new PopupWithForm('.popup__change-avatar',{
       .catch((err) => {
         console.log(`Произошла ошибка ${err}`)
       })
+      .finally(() => {
+        changeAvatarPopup.onDataLoaded();
+      })
+
   }
 })
 
@@ -145,6 +156,7 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
 //Экземпляр класса добавления карточки через форму
 const addNewCardPopup = new PopupWithForm('.popup_add_card', {
   handleSubmitForm: (cardData) => {
+    addNewCardPopup.onSaveButtonClick();
     api.addNewCardApi(cardData)
       .then((item) => {
         cardList.addItems(createCard(item))
@@ -152,6 +164,9 @@ const addNewCardPopup = new PopupWithForm('.popup_add_card', {
     })
       .catch((err) => {
         console.log(err)
+      })
+      .finally(() => {
+        addNewCardPopup.onDataLoaded();
       })
   },
 })
