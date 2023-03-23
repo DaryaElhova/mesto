@@ -12,7 +12,11 @@
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="562483fd2e6aca3c0370.png" alt="аватар профиля">
+      <div class="profile__avatar-area">
+        <button class="profile__avatar-button" type="button"  aria-label="Обновить аватар">
+        </button>
+        <img class="profile__avatar" src="#" alt="аватар профиля">
+      </div>
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button class="profile__button" type="button" aria-label="Редактировать профиль"></button>
@@ -58,6 +62,26 @@
     <button class="popup__close" type="button"></button>
   </figure>
 </div>
+<div class="popup popup__confirm">
+  <div class="popup__container">
+    <h2>Вы уверены?</h2>
+    <form class="popup__form"> 
+      <button class="popup__btn" type="submit">Да</button>
+    </form>
+    <button class="popup__close" type="button"></button>
+  </div>
+</div>
+<div class="popup popup__change-avatar">
+  <div class="popup__container">
+    <form class="popup__form" name="form-change-avatar" novalidate>
+      <h2>Обновить аватар</h2>
+      <input class="popup__field popup__field_type_update" type="url" id="update-avatar" value="" placeholder="Введите ссылку" required name="avatar">
+      <span class="update-avatar-error popup__error"></span>
+      <button class="popup__btn" type="submit">Сохранить</button>
+    </form>
+    <button class="popup__close" type="button"></button>
+  </div>
+</div>
 
 <template class="elements-template">
   <li class="elements__element">
@@ -65,7 +89,11 @@
     <img class="elements__image" src="#" alt="#">
     <div class="elements__caption">
       <h2 class="elements__title"></h2>
-      <button class="elements__icon" type="button" aria-label="Нравится"></button>
+      <div class="elements__like">
+        <button class="elements__icon" type="button" aria-label="Нравится"></button>
+        <p class="elements__counter"></p>
+      </div>
+      
     </div>
   </li>
 </template>
