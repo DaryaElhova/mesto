@@ -6,6 +6,7 @@ import {
   addCardButton,
   newCardForm,
   buttonOpenChangeAvatarPopup,
+  changeAvatarForm,
   config
 } from '../utils/constants.js'
 
@@ -186,3 +187,7 @@ newCardPopupValidator.enableValidation();
 //валидация формы редактирования профиля
 const profilePopupValidator  = new FormValidator(config, profileForm);
 profilePopupValidator.enableValidation();
+
+//валидация формы смены аватара
+const changeAvatarPopupValidator = new FormValidator(config, changeAvatarForm);
+changeAvatarPopupValidator.enableValidation();

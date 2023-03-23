@@ -21,7 +21,7 @@ const newCardName = newCardPopup.querySelector('.popup__field_type_region');
 const newCardLink = newCardPopup.querySelector('.popup__field_type_link');
 
 const buttonOpenChangeAvatarPopup = document.querySelector('.profile__avatar-button');
-
+const changeAvatarForm = document.forms["form-change-avatar"];
 const cardsContainer = document.querySelector('.elements');
 
 const config = {
@@ -53,5 +53,6 @@ export {
     newCardLink,
     cardsContainer,
     buttonOpenChangeAvatarPopup,
+    changeAvatarForm,
     config
 }

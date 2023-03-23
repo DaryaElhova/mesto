@@ -65,7 +65,7 @@
 <div class="popup popup__confirm">
   <div class="popup__container">
     <h2>Вы уверены?</h2>
-    <form class="popup__form" novalidate> 
+    <form class="popup__form"> 
       <button class="popup__btn" type="submit">Да</button>
     </form>
     <button class="popup__close" type="button"></button>
@@ -73,7 +73,7 @@
 </div>
 <div class="popup popup__change-avatar">
   <div class="popup__container">
-    <form class="popup__form" novalidate>
+    <form class="popup__form" name="form-change-avatar" novalidate>
       <h2>Обновить аватар</h2>
       <input class="popup__field popup__field_type_update" type="url" id="update-avatar" value="" placeholder="Введите ссылку" required name="avatar">
       <span class="update-avatar-error popup__error"></span>
@@ -89,7 +89,7 @@
     <img class="elements__image" src="#" alt="#">
     <div class="elements__caption">
       <h2 class="elements__title"></h2>
-      <div>
+      <div class="elements__like">
         <button class="elements__icon" type="button" aria-label="Нравится"></button>
         <p class="elements__counter"></p>
       </div>

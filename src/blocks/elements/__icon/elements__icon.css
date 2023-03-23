@@ -4,10 +4,11 @@
   background-repeat: no-repeat;
   border: none;
   background-color: transparent;
-  height: 22px;
-  width: 19px;
+  height: 19px;
+  width: 22px;
   cursor: pointer;
-  /* margin: 0; */
+  margin: 0;
+  padding: 0;
 }
 
 .elements__icon:hover{
