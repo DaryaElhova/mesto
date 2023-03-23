@@ -5,6 +5,7 @@ import {
   jobInput,
   addCardButton,
   newCardForm,
+  buttonOpenChangeAvatarPopup,
   config
 } from '../utils/constants.js'
 
@@ -38,6 +39,21 @@ function createCard(item) {
   const card = new Card(item, '.elements-template', currentUserId,{
     handleCardClick: (title, image) => popupImage.open(title, image),
     handleCardDelete: (cardData, cardId) => popupConfirmDelete.open(cardData, cardId),
+
+    handlePutLike: (cardId) => {
+      api.putLikeApi(cardId)
+        .then((res) => {
+          card.renderLikeCounter(res);
+        })
+        .catch((err) => console.log(`Возникла ошибка ${err}`))
+    },
+    handleDeleteLike: (cardId) => {
+      api.deleteLikeApi(cardId)
+        .then((res) => {
+          card.renderLikeCounter(res);
+        })
+        .catch((err) => console.log(`Возникла ошибка ${err}`))
+    }
   });
   const cardElement = card.generateCard();
   return cardElement;
@@ -96,6 +112,25 @@ const editProfilePopup = new PopupWithForm ('.popup_edit_profile',{
   });
 
 editProfilePopup.setEventListeners();
+
+const changeAvatarPopup = new PopupWithForm('.popup__change-avatar',{
+  handleSubmitForm: (avatarLink) => {
+    api.changeAvatarAPI(avatarLink)
+      .then((res) => {
+        userInfo.setUserAvatar(res.avatar)
+        changeAvatarPopup.close();
+      })
+      .catch((err) => {
+        console.log(`Произошла ошибка ${err}`)
+      })
+  }
+})
+
+changeAvatarPopup.setEventListeners();
+
+buttonOpenChangeAvatarPopup.addEventListener('click', () => {
+  changeAvatarPopup.open();
+})
 
 buttonOpenEditProfilePopup.addEventListener('click', () => {
   editProfilePopup.open();

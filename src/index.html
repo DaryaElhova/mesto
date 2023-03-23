@@ -12,7 +12,11 @@
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('../src/images/Avatar.png')%>" alt="аватар профиля">
+      <div class="profile__avatar-area">
+        <button class="profile__avatar-button" type="button"  aria-label="Обновить аватар">
+        </button>
+        <img class="profile__avatar" src="#" alt="аватар профиля">
+      </div>
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button class="profile__button" type="button" aria-label="Редактировать профиль"></button>
@@ -67,9 +71,9 @@
     <button class="popup__close" type="button"></button>
   </div>
 </div>
-<div class="popup popup__update">
+<div class="popup popup__change-avatar">
   <div class="popup__container">
-    <form>
+    <form class="popup__form" novalidate>
       <h2>Обновить аватар</h2>
       <input class="popup__field popup__field_type_update" type="url" id="update-avatar" value="" placeholder="Введите ссылку" required name="avatar">
       <span class="update-avatar-error popup__error"></span>

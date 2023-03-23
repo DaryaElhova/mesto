@@ -38,3 +38,5 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__confirm/popup__confirm.css);
 @import url(../blocks/elements/__counter/elements__counter.css);
+@import url(../blocks/profile/__avatar-button/profile__avatar-button.css);
+@import url(../blocks/profile/__avatar-area/profile__avatar-area.css);
