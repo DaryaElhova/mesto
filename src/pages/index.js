@@ -68,6 +68,9 @@ Promise.all([api.getUserInfoApi(), api.getCardsApi()])
     userInfo.setUserAvatar(data.avatar);
     cardList.rendererItems(items);
   })
+  .catch((err) => {
+    console.log(`Произошла ошибка ${err}`);
+  })
 
 const popupConfirmDelete = new PopupConfirm('.popup_confirm',{
    handleConfirmation:(cardData, cardId) => {
@@ -141,6 +144,7 @@ const changeAvatarPopup = new PopupWithForm('.popup_change-avatar',{
 changeAvatarPopup.setEventListeners();
 
 buttonOpenChangeAvatarPopup.addEventListener('click', () => {
+  changeAvatarPopupValidator.resetValidation();
   changeAvatarPopup.open();
 })
 
@@ -151,7 +155,6 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
   const actualUserInfo = userInfo.getUserInfo();
   nameInput.value = actualUserInfo.name;
   jobInput.value = actualUserInfo.info;
-  //editProfilePopup.setInputValues(actualUserInfo);
 });
 
 //Экземпляр класса добавления карточки через форму
