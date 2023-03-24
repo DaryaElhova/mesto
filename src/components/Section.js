@@ -9,7 +9,7 @@ export default class Section {
 //Метод renderItems проходит по всем элементам массива items и для каждого из них вызывает функцию renderer,
 // которая создает соответствующий DOM-элемент
   rendererItems(items) {
-    items.forEach((item) => {
+    items.reverse().forEach((item) => {
       this._renderer(item);
     })
   }
